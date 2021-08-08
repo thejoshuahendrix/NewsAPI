@@ -1,11 +1,9 @@
 import {useState, useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import Card from './components/Card';
-import {config} from 'dotenv';
+import Hero from './components/Hero';
 
-config();
 
 function App() {
   
@@ -18,7 +16,7 @@ function App() {
     // Handle success
     .then(response => response.json())  // convert to json
     .then(json => {
-      console.log(json.articles)
+      //console.log(json.articles)
       setCards(json.articles)
     }
     )    //print data to console
@@ -30,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Hero />
         {cards.map(card => {
           return (  
             <Card content={card.content} heading={card.author} body={card.title} />

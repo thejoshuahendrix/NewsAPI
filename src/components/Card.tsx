@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 
 const Container = styled.div<{ active: boolean }>`
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
+display: grid;
+grid-template-columns: 1fr 1fr;
+justify-content: space-between;
 height: 95vh;
 width: 95vw;
 background-color: #363636;
-border-radius: 20px;
-font-size:${({ active }) => active ? "1.5rem" : "2rem"};
+border-radius: 50px;
+font-size: 1rem;
 margin-top: 20vh;
 box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 `;
@@ -42,6 +42,29 @@ const ToggleButton = styled.div<{ active: boolean }>`
 
 `
 
+const Heading = styled.div`
+    font-family: monospace;
+    font-size:1rem;
+
+`
+
+const Content = styled.div<{active : boolean}>`
+    padding: 2rem;
+    width: 80%;
+    background-color:#CCC;
+    color: #252525;
+    margin:auto;
+    opacity: ${({ active }) => active ? '0.0 ' : '1.0'};
+`
+
+const Article = styled.div<{active : boolean}>`
+    padding: 2rem;
+    background-color:#222;
+    width: 60%;
+    margin:auto;
+    opacity: ${({ active }) => active ? '0.0'  : '1.0'};
+`
+
 type CardType = {
     heading: string;
     body: string;
@@ -50,13 +73,18 @@ type CardType = {
 
 
 const Card = (props: CardType) => {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(true);
 
     return (
         <Container active={active}>
-            <div className="heading">{props.heading}</div>
-            <div className="content">{props.body}</div>
-            <div className="article">{props.content}</div>
+            
+            <Content>{props.body}</Content>
+            <Article>{props.content}</Article>
+            <div></div>
+            <Heading>{props.heading}</Heading>
+            <div></div>
+            <div></div><div></div>
+            <div></div>
             <ToggleButton onClick={()=> {setActive(!active)}} active={active} />
         </Container>
 
