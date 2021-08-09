@@ -1,40 +1,50 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import NavBar from './components/NavBar';
-import Card from './components/Card';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import Home from './pages/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Contact from './pages/Contact';
+import About from './pages/About';
+import Portfolio from './pages/Portfolio';
+import { useOnClickOutside } from './hooks';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+import Menu from './components/Menu';
+import Burger from './components/Burger';
 import Hero from './components/Hero';
 
 
-function App() {
-  
-  
-  
-  const [cards, setCards] = useState([]);
-  
-  useEffect(() => {
-    fetch(`https://newsapi.org/v2/everything?q=Apple&from=2021-08-06&sortBy=popularity&apiKey=7beb72935e844c6ca619d4b80c7da0d2`)
-    // Handle success
-    .then(response => response.json())  // convert to json
-    .then(json => {
-      //console.log(json.articles)
-      setCards(json.articles)
-    }
-    )    //print data to console
-    .catch(err => console.log('Request Failed', err));
-    }
+library.add(fab);
 
-   , []);
-  
+function App() {
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  useOnClickOutside(node, () => setOpen(false));
   return (
-    <div className="App">
-      <NavBar />
-      <Hero />
-        {cards.map(card => {
-          return (  
-            <Card content={card.content} heading={card.author} body={card.title} />
-        )})}        
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        
+        <Hero />
+        <Router>
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/about' exact component={About} />
+            <Route path='/contact' exact component={Contact} />
+            <Route path='/portfolio' exact component={Portfolio} />
+
+          </Switch>
+        </Router>
+        <div ref={node}>
+          <Burger open={open} setOpen={setOpen} />
+          <Menu open={open} setOpen={setOpen} />
+        </div>
+      </div>
+    </ThemeProvider>
   );
 }
-
 export default App;

@@ -4,17 +4,16 @@ import styled from 'styled-components';
 
 
 
-const Container = styled.div<{ active: boolean }>`
-display: grid;
-grid-template-columns: 1fr 1fr;
-justify-content: space-between;
-height: 95vh;
-width: 95vw;
-background-color: #363636;
-border-radius: 50px;
-font-size: 1rem;
-margin-top: 20vh;
-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+export const Container = styled.div<{ active: boolean }>`
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    background-color: #363636;
+    font-size: 1rem;
+    margin: 2rem 2rem 2rem 2rem;
+    align: vertical;
+    text-align:center;
+    box-shadow: ${({ active }) => active ? '10px 10px 10px rgba(0,0,0,0.1)' : '30px 30px 30px rgba(0,0,0,0.2)'};
 `;
 
 
@@ -25,13 +24,15 @@ const ToggleButton = styled.div<{ active: boolean }>`
     width: 100px;
     height: 20px;
     position: relative;
+    margin: 2rem;
     border-radius: 20px;
     border: 1px solid black;
+    overflow:hidden;
     &:after {
         content:'';
         position: absolute;
         top:0;
-        ${({active}) => active ? 'left:0px;' : 'left: calc(100% - 20px);'};
+        ${({ active }) => active ? 'left:0px;' : 'left: calc(100% - 20px);'};
         height:20px;
         width:20px;
         border-radius: 50%;
@@ -45,30 +46,34 @@ const ToggleButton = styled.div<{ active: boolean }>`
 const Heading = styled.div`
     font-family: monospace;
     font-size:1rem;
+    padding:2rem;
 
 `
 
-const Content = styled.div<{active : boolean}>`
+const Content = styled.div<{ active: boolean }>`
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
     padding: 2rem;
-    width: 80%;
-    background-color:#CCC;
-    color: #252525;
-    margin:auto;
+    background-color:#666;
+    color: rgb(10, 169, 197);
     opacity: ${({ active }) => active ? '0.0 ' : '1.0'};
 `
 
-const Article = styled.div<{active : boolean}>`
+const Article = styled.div<{ active: boolean }>`    
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
     padding: 2rem;
     background-color:#222;
-    width: 60%;
-    margin:auto;
-    opacity: ${({ active }) => active ? '0.0'  : '1.0'};
+    align:vertical;
+    opacity: ${({ active }) => active ? '0.0' : '1.0'};
 `
 
 type CardType = {
     heading: string;
     body: string;
-    content:string;
+    content: string;
 };
 
 
@@ -77,15 +82,14 @@ const Card = (props: CardType) => {
 
     return (
         <Container active={active}>
-            
+
             <Content>{props.body}</Content>
+
             <Article>{props.content}</Article>
-            <div></div>
+
             <Heading>{props.heading}</Heading>
-            <div></div>
-            <div></div><div></div>
-            <div></div>
-            <ToggleButton onClick={()=> {setActive(!active)}} active={active} />
+
+            <ToggleButton onClick={() => { setActive(!active) }} active={active} />
         </Container>
 
     )

@@ -1,10 +1,19 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+
+
+const HeroContainer = styled.div`
+    background-color:black;
+    width:100vw;
+    height:40vh;
+    overflow:hidden;
+`
 
 const Hero = () => {
     return (
-        <div>
-            <img src="../HendrixSoftware.gif"></img>
-        </div>
+        <HeroContainer>
+            <img src="https://github.com/thejoshuahendrix/NewsAPI/blob/main/src/HendrixSoftware.gif?raw=true"></img>
+        </HeroContainer>
     )
 }
 
