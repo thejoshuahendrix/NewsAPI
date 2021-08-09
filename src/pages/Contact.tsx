@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from '../components/Card'
 
 const Contact = () => {
     return (
-        <div>
+        <Container>
             You can contact me via email: thejoshuahendrix@gmail.com
-        </div>
+        </Container>
     )
 }
 

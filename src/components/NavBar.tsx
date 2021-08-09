@@ -10,7 +10,6 @@ const NavWrapper = styled.div`
     background-color: #363636;
 `
 
-
 const Logo = styled.div`
     margin: auto;
     margin-left: 10vw;
@@ -22,7 +21,6 @@ const Logo = styled.div`
         text-decoration: none;
     }
   `
-
 
 const NavLinks = styled.div`
     width: 30vw;
@@ -38,11 +36,6 @@ const NavLinks = styled.div`
         text-decoration: none;
     }
 `
-
-
-
-
-
 
 
 const NavBar = () => {

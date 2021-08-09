@@ -17,6 +17,7 @@ import { theme } from './theme';
 import Menu from './components/Menu';
 import Burger from './components/Burger';
 import Hero from './components/Hero';
+import NewsAPI from './pages/NewsAPI';
 
 
 library.add(fab);
@@ -36,6 +37,7 @@ function App() {
             <Route path='/about' exact component={About} />
             <Route path='/contact' exact component={Contact} />
             <Route path='/portfolio' exact component={Portfolio} />
+            <Route path='/newsapi' exact component={NewsAPI} />
 
           </Switch>
         </Router>

@@ -57,6 +57,10 @@ const Menu = ({ open, setOpen }) => {
       <a href="/contact">
         Contact
       </a>
+      <a href="/newsapi">
+        News API
+      </a>
+      
     </StyledMenu>
   )
 }
