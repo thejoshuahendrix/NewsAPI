@@ -21,11 +21,11 @@ const NewsAPI = () => {
     return (
         <div>
             <Wrapper>
-                {cards.map(card => {
+                {cards?cards.map(card => {
                     return (
                         <Card content={card.content} heading={card.author} body={card.title} />
                     )
-                })}
+                }):""}
             </Wrapper>
         </div>
     )
